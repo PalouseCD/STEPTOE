@@ -53,3 +53,12 @@ Q_summer <- Q_data %>%
 Q_summer %>% 
   group_by(year) %>% 
   summarise(mean = mean(Q))
+
+
+# Join datasets and save -------------------------------------------------
+
+QandT <- left_join(Q_data,WT_data,by = "datetime") %>% 
+  rename("Q (cfs)" = Q,
+         "WT (degC)" = WT)
+
+write.csv(QandT,"R:\\_04_Project_Data\\R\\STEPTOE\\outputs\\Steptoe_Q_and_T.csv")
